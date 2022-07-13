@@ -26,12 +26,17 @@ class LessonSeeder extends Seeder
                 'class_size'=> $fake->numberBetween(1,10),
                 'online_link'=> $fake->url('https://laracasts.com/discuss/channels/laravel/how-to-give-faker-posts-real-relative-url-of-project'),
                 'offline_address'=> $fake->sentence,
-                'document'=>  "[]",
+                'document'=> json_encode([
+                    
+                        'name' => "dfnkjfmdl,sdfmgf",
+                        'songs' => "dkjgflsfdngf"
+                   
+                   
+                ] ),
                 'start_time' =>$fake-> date("Y-m-d H:i:s"),
                 'duration'=> $fake->numberBetween(2222,3333),
                 'status'=> $array[rand(0,2)],
-                'created_at'=>$fake-> date("Y-m-d H:i:s"),
-                'updated_at'=> $fake-> date("Y-m-d H:i:s")
+             
                 
                 
             ]);

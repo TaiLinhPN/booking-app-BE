@@ -21,8 +21,6 @@ class registrationSeeder extends Seeder
                 'student_id' => rand(1,10),
                 'teacher_id' => rand(1,10),
                 'lesson_id' => rand(1,10), 
-                'created_at'=>$fake->date(now()),
-                'updated_at'=> $fake-> date(now())    
             ]);
         }
     }

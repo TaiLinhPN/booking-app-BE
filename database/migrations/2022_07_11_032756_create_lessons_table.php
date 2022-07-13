@@ -24,8 +24,7 @@ class CreateLessonsTable extends Migration
             $table->string('offline_address');
             $table->json('document');
             $table->dateTime('start_time');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->timestamps();
             $table->integer('duration');
            
             $table->enum('status',['active','cancelled','delayed']);

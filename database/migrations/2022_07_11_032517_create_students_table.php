@@ -28,8 +28,7 @@ class CreateStudentsTable extends Migration
             $table-> string("password",10);
             $table-> string("reset_password_token");
             $table-> dateTime("token_expired_at");
-            $table-> dateTime("created_at");
-            $table-> dateTime("updated_at");
+            $table->timestamps();
             $table-> dateTime("deleted_at");                
         });
     }

@@ -30,8 +30,7 @@ class CreateTeachersTable extends Migration
             $table-> string("password");
             $table-> string("reset_password_token",20);
             $table-> dateTime("token_expired_at");
-            $table-> dateTime("created_at");
-            $table-> dateTime("updated_at");
+            $table->timestamps();
             $table-> dateTime("deleted_at");               
         });
     }

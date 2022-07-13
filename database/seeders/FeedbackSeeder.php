@@ -16,17 +16,13 @@ class FeedbackSeeder extends Seeder
     {
          $limit = 15;
         $fake = Faker::create();
-        
+        $array = [true, false];
         for ($i = 0; $i < $limit; $i++) {
             DB::table('feedback')->insert([
-                'idStudent' => rand(1,10),
-                'idTeacher' => rand(1,10),
-                'feedbackStudent' => $fake ->paragraph(1),
-                'feedbackTeacher' => $fake->paragraph(1),
-                'created_at'=>$fake-> date(now()),
-                'updated_at'=> $fake-> date(now())
-                
-                
+                'student_id' => rand(1,10),
+                'teacher_id' => rand(1,10),
+                'feedback' => $fake ->paragraph(1),
+                'sender_type' =>  $array[rand(0,1)]                 
             ]);
         }
     }

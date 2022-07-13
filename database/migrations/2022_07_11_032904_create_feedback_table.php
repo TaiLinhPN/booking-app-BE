@@ -14,13 +14,13 @@ class CreateFeedbackTable extends Migration
     public function up()
     {
         Schema::create('feedback', function (Blueprint $table) {
-           $table->increments('idFeedback');
-            $table->integer('idStudent')->unsigned();
-            $table->integer('idTeacher')->unsigned();
-            $table->string('feedbackStudent');
-            $table->string('feedbackTeacher');
-            $table->foreign('idStudent')->references('id')->on('students')->onDelete('cascade');
-            $table->foreign('idTeacher')->references('id')->on('teachers')->onDelete('cascade');
+           $table->increments('id');
+            $table->integer('student_id')->unsigned();
+            $table->integer('teacher_id')->unsigned();
+            $table->string('feedback');
+            $table->string('sender_type');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
             $table->timestamps();
         });
     }

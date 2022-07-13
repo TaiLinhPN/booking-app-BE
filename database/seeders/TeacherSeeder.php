@@ -35,8 +35,6 @@ class TeacherSeeder extends Seeder
                 'password' => '12345678',
                 'reset_password_token' => "1223456789",
                 'token_expired_at' => $fake -> date("Y-m-d H:i:s"),
-                'created_at' => $fake -> date("Y-m-d H:i:s"),
-                'updated_at' => $fake -> date("Y-m-d H:i:s"),
                 'deleted_at' => $fake -> date("Y-m-d H:i:s"),
                 
             ]);
