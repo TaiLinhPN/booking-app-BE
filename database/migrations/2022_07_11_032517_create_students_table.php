@@ -28,8 +28,8 @@ class CreateStudentsTable extends Migration
             $table-> string("password",10);
             $table-> string("reset_password_token");
             $table-> dateTime("token_expired_at");
-            $table->timestamps();
-            $table-> dateTime("deleted_at");                
+            $table-> dateTime("deleted_at");     
+            $table-> timestamps();
         });
     }
 

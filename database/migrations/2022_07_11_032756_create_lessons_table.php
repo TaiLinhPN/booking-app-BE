@@ -26,7 +26,6 @@ class CreateLessonsTable extends Migration
             $table->dateTime('start_time');
             $table->timestamps();
             $table->integer('duration');
-           
             $table->enum('status',['active','cancelled','delayed']);
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
         });
