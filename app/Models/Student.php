@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Laravel\Sanctum\HasApiTokens;
-class Student extends Model
+class Student extends Model implements ShouldQueue
 {
     use HasApiTokens, HasFactory, Notifiable;
 

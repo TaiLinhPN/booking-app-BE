@@ -44,26 +44,35 @@ class StudentController extends Controller
         else
         {
             $user = Student::create([
-                 
                 'email' =>$request -> email,
+                'username' =>$request -> name,
+                'address' =>$request -> address,
                 'password' =>Hash::make ($request -> password),
             ]);
+
+            
             $token = $user->createToken($user->email.'_Token')->plainTextToken;
             return response()->json([
                 'status'=>200,
                 'username'=>$user ->name, 
                 'token'=>$token, 
                 'message'=>'Register successfully', 
-            ]);           
+            ],
+        );           
         }
 
     }
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required',
-        ]);
+        ],
+         [
+            'name.required' => "Name empty",
+            'email.required' => "email empty",
+            'password.required' => "password empty",   
+        ]
+        );
         if($validator ->fails())
         {
             return response()->json([
@@ -72,6 +81,7 @@ class StudentController extends Controller
         }
         if($request->option =='student'){
             $user = Student::where("email" ,$request->email )->where("password" ,$request->password )->get();
+            
             if($user->count()>0){
                 return Response()->json(
                     [
@@ -81,18 +91,9 @@ class StudentController extends Controller
                             "success"=>1
                             ]
                     
-                        );
+                 );
             }
-            return Response()->json(
-                [
-                        'status'=>401,
-                     
-                        'message'=>'Login false', 
              
-                        ]
-                
-                    );
-
         }
         elseif($request->option =='teacher'){
             $user = Teacher::where("email" ,$request->email )->where("password" ,$request->password )->get();
@@ -105,31 +106,12 @@ class StudentController extends Controller
                             "success"=>1
                             ]
                     
-                        );
+                );
             }
-            return Response()->json(
-                [
-                        'status'=>401,
-                     
-                        'message'=>'Login false', 
              
-                        ]
-                
-                    );
 
         }
-        else{
-            return Response()->json(
-                [
-                        'status'=>401,
-                     
-                        'message'=>'Login false', 
-             
-                        ]
-                
-                    );
-
-        }
+         
        
         
          
