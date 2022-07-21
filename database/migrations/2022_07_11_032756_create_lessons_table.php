@@ -24,8 +24,8 @@ class CreateLessonsTable extends Migration
             $table->string('offline_address');
             $table->json('document');
             $table->dateTime('start_time');
+            $table->dateTime('end_time');
             $table->timestamps();
-            $table->integer('duration');
             $table->enum('status',['active','cancelled','delayed']);
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
         });

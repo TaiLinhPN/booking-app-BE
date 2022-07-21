@@ -19,6 +19,9 @@ use App\Http\Controllers\API\RegistrationController;
 |
 */
 
+
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -27,3 +30,10 @@ Route::get('/teachers',[TeacherController::class,'index']);
 Route::get('/registrations',[RegistrationController::class,'index']);
 Route::get('/feedback',[FeedbackController::class,'index']);
 Route::get('/lessons',[LessonController::class,'index']);
+
+// login
+Route::post('/register',[StudentController::class, "register"]);
+Route::post('/login',[StudentController::class, "login"]);
+
+// lấy thông tin của học sinh
+Route::get('/studentInfomation/{id}',[StudentController::class, "getInformationStudent"]);

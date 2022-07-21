@@ -15,23 +15,23 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
-            $table-> Integer("google_id");
-            $table-> Integer("facebook_id");
-            $table-> string("name",100);
-            $table-> string("email",100);
-            $table-> string("address");
-            $table-> text("biography");
-            $table-> date("dob");
-            $table-> enum("gender",['Male', 'Female','Other']);
-            $table-> string("phone",20);
-            $table-> string("job");
-            $table-> string("username",100);
-            $table-> string("company");
-            $table-> string("password");
-            $table-> string("reset_password_token",20);
-            $table-> dateTime("token_expired_at");
+            $table-> Integer("google_id")->nullable();
+            $table-> Integer("facebook_id")->nullable();
+            $table-> string("name",100)->nullable();
+            $table-> string("email",100)->nullable();
+            $table-> string("address")->nullable();
+            $table-> text("biography")->nullable();
+            $table-> date("dob")->nullable();
+            $table-> enum("gender",['Male', 'Female','Other'])->nullable();
+            $table-> string("phone",20)->nullable();
+            $table-> string("job")->nullable();
+            $table-> string("username",100)->nullable();
+            $table-> string("company")->nullable();
+            $table-> string("password")->nullable();
+            $table-> string("reset_password_token",20)->nullable();
+            $table-> dateTime("token_expired_at")->nullable();
             $table->timestamps();
-            $table-> dateTime("deleted_at");               
+            $table-> dateTime("deleted_at")->nullable();               
         });
     }
 

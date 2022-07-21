@@ -34,7 +34,7 @@ class LessonSeeder extends Seeder
                    
                 ] ),
                 'start_time' =>$fake-> date("Y-m-d H:i:s"),
-                'duration'=> $fake->numberBetween(2222,3333),
+                'end_time'=> $fake-> date("Y-m-d H:i:s"),
                 'status'=> $array[rand(0,2)],
              
                 
