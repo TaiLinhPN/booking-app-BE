@@ -18,7 +18,7 @@ class CreateLessonsTable extends Migration
             $table->integer('teacher_id')->unsigned();
             $table->string('name');
             $table->string('image_link');
-            $table->text('content');
+            $table->text('title');
             $table->integer('class_size');
             $table->string('online_link');
             $table->string('offline_address');
