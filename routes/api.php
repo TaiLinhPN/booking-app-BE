@@ -7,6 +7,7 @@ use App\Http\Controllers\API\TeacherController;
 use App\Http\Controllers\API\LessonController;
 use App\Http\Controllers\API\FeedbackController;
 use App\Http\Controllers\API\RegistrationController;
+use App\Models\Lesson;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,15 @@ Route::get('/lessons',[LessonController::class,'index']);
 // login
 Route::post('/register',[StudentController::class, "register"]);
 Route::post('/login',[StudentController::class, "login"]);
+
+// guimail
+Route::post('/register/verify/{code}',[StudentController::class, "verify"]);
+
+// lich
+Route::post('/lessons',[LessonController::class, "store"]);
+
+
+
 
 // lấy thông tin của học sinh
 Route::get('/studentInfomation/{id}',[StudentController::class, "getInformationStudent"]);
