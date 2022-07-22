@@ -22,7 +22,7 @@ class LessonSeeder extends Seeder
                 'teacher_id' => rand(1,10),
                 'name' => $fake ->name,
                 'image_link' => $fake->imageUrl($width = 640, $height = 480, 'cats', true, 'fake'),
-                'content' => $fake->paragraph(1),
+                'title' => $fake->paragraph(1),
                 'class_size'=> $fake->numberBetween(1,10),
                 'online_link'=> $fake->url('https://laracasts.com/discuss/channels/laravel/how-to-give-faker-posts-real-relative-url-of-project'),
                 'offline_address'=> $fake->sentence,

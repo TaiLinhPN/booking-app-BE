@@ -19,6 +19,7 @@ class CreateLessonsTable extends Migration
             $table->string('name');
             $table->string('image_link');
             $table->text('title');
+            
             $table->integer('class_size');
             $table->string('online_link');
             $table->string('offline_address');
