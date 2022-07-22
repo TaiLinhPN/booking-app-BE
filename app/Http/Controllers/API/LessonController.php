@@ -11,5 +11,12 @@ class LessonController extends Controller
         $listLesson = Lesson::all();
         return response() -> json($listLesson);
     }
-    
+    public function store(Request $request){
+        $lesson = new Lesson();
+        $lesson->title = $request->input('title');
+        $lesson->start_time = $request->input('start_time');
+        $lesson->end_time = $request->input('end_time');
+        $lesson->save(); 
+        return response() -> json(['sucess'=>"thanhcong"],200);
+    }
 }
