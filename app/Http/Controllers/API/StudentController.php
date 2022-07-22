@@ -18,6 +18,24 @@ class StudentController extends Controller
         return response() -> json($listStudent);
     }
 
+
+    public function verify($code)
+    {
+        $user = Student::where('confirmation_code', $code);
+
+        if ($user->count() > 0) {
+            $user->update([
+                'confirmed' => 1,
+                'confirmation_code' => null
+            ]);
+            $notification_status = 'Bạn đã xác nhận thành công';
+        } else {
+            $notification_status ='Mã xác nhận không chính xác';
+        }
+
+        return redirect(route('login'))->with('status', $notification_status);
+    }
+
     public function register(Request $request){
         
         $validator = Validator::make($request->all(),[
@@ -35,31 +53,49 @@ class StudentController extends Controller
             'password.min' => "Least 8 character",
             
         ]);
+
+        
         if($validator ->fails())
         {
             return response()->json([
                 'validation_errors'=>$validator->errors(),
             ]);
         }
-        else
-        {
-            $user = Student::create([
+
+
+        if($request->option =='student'){
+             $user = Student::create([
                 'email' =>$request -> email,
-                'username' =>$request -> name,
+                'name' =>$request -> name,
                 'address' =>$request -> address,
                 'password' =>Hash::make ($request -> password),
             ]);
-
-            
-            $token = $user->createToken($user->email.'_Token')->plainTextToken;
+            $user->save();
             return response()->json([
                 'status'=>200,
-                'username'=>$user ->name, 
-                'token'=>$token, 
+                
                 'message'=>'Register successfully', 
-            ],
-        );           
+            ]);
+
+            
+             
+            
         }
+        elseif($request->option =='teacher'){
+            $user = Teacher::create([
+                'email' =>$request -> email,
+                'name' =>$request -> name,
+                'address' =>$request -> address,
+                'password' =>Hash::make ($request -> password),
+            ]);
+             return response()->json([
+                'status'=>200,
+                'message'=>'Register successfully', 
+            ]);
+
+        }
+                 
+       
 
     }
     public function login(Request $request){
@@ -86,9 +122,10 @@ class StudentController extends Controller
                 return Response()->json(
                     [
                             'status'=>200,
-                            'username'=>$user[0]->name, 
+                            'username'=>$user[0], 
                             'message'=>'Login successfully', 
                             "success"=>1
+                            
                             ]
                     
                  );
@@ -101,7 +138,7 @@ class StudentController extends Controller
                 return Response()->json(
                     [
                             'status'=>200,
-                            'username'=>$user[0]->name, 
+                            'username'=>$user[0], 
                             'message'=>'Login successfully', 
                             "success"=>1
                             ]
